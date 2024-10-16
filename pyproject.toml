@@ -25,17 +25,16 @@ classifiers = [
     "Programming Language :: Cython",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: Apache Software License",
 ]
-requires-python = ">= 3.8"
+requires-python = ">= 3.9"
 dynamic = ["version"]
 dependencies = [
-    "salt>=3005",
+    "salt>=3006",
 ]
 
 [project.readme]
@@ -44,16 +43,15 @@ content-type = "text/markdown"
 
 [project.urls]
 Homepage = "https://github.com/salt-extensions/saltext-dell"
+Documentation = "https://salt-extensions.github.io/saltext-dell/"
 Source = "https://github.com/salt-extensions/saltext-dell"
 Tracker = "https://github.com/salt-extensions/saltext-dell/issues"
 
 [project.optional-dependencies]
 changelog = ["towncrier==22.12.0"]
 dev = [
-    "nox",
-    "pre-commit>=2.4.0",
-    "pylint",
-    "saltpylint",
+    "nox[uv]>=2024.3",
+    "pre-commit>=2.21.0",
 ]
 docs = [
   "sphinx",
@@ -68,12 +66,11 @@ docs = [
 ]
 docsauto = ["sphinx-autobuild"]
 lint = [
-    "pylint",
-    "saltpylint",
+    "pylint==3.2.6",
 ]
 tests = [
     "pytest>=7.2.0",
-    "pytest-salt-factories>=1.0.0rc28",
+    "pytest-salt-factories>=1.0.0",
 ]
 
 [project.entry-points."salt.loader"]
@@ -103,42 +100,48 @@ build_dir = "build/sphinx"
 [tool.black]
 line-length = 100
 
+[tool.isort]
+force_single_line = true
+skip = ["src/saltext/dell/__init__.py"]
+profile = "black"
+line_length = 100
+
 [tool.towncrier]
-    package = "saltext.dell"
-    filename = "CHANGELOG.md"
-    template = "changelog/.template.jinja"
-    directory = "changelog/"
-    start_string = "# Changelog\n"
-    underlines = ["", "", ""]
-    title_format = "## {version} ({project_date})"
-    issue_format = "[#{issue}](https://github.com/salt-extensions/saltext-dell/issues/{issue})"
+package = "saltext.dell"
+filename = "CHANGELOG.md"
+template = "changelog/.template.jinja"
+directory = "changelog/"
+start_string = "# Changelog\n"
+underlines = ["", "", ""]
+title_format = "## {version} ({project_date})"
+issue_format = "[#{issue}](https://github.com/salt-extensions/saltext-dell/issues/{issue})"
 
-    [[tool.towncrier.type]]
-        directory = "removed"
-        name = "Removed"
-        showcontent = true
+[[tool.towncrier.type]]
+directory = "removed"
+name = "Removed"
+showcontent = true
 
-    [[tool.towncrier.type]]
-        directory = "deprecated"
-        name = "Deprecated"
-        showcontent = true
+[[tool.towncrier.type]]
+directory = "deprecated"
+name = "Deprecated"
+showcontent = true
 
-    [[tool.towncrier.type]]
-        directory = "changed"
-        name = "Changed"
-        showcontent = true
+[[tool.towncrier.type]]
+directory = "changed"
+name = "Changed"
+showcontent = true
 
-    [[tool.towncrier.type]]
-        directory = "fixed"
-        name = "Fixed"
-        showcontent = true
+[[tool.towncrier.type]]
+directory = "fixed"
+name = "Fixed"
+showcontent = true
 
-    [[tool.towncrier.type]]
-        directory = "added"
-        name = "Added"
-        showcontent = true
+[[tool.towncrier.type]]
+directory = "added"
+name = "Added"
+showcontent = true
 
-    [[tool.towncrier.type]]
-        directory = "security"
-        name = "Security"
-        showcontent = true
+[[tool.towncrier.type]]
+directory = "security"
+name = "Security"
+showcontent = true
