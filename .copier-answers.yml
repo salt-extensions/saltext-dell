@@ -21,3 +21,5 @@ summary: Salt Extension for interacting with Dell
 tracker_url: https://github.com/salt-extensions/saltext-dell/issues
 url: https://github.com/salt-extensions/saltext-dell
 workflows: basic
+
+#copier updated
